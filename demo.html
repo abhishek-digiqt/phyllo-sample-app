@@ -7,11 +7,13 @@
     <p>ABCD .COM</p>
     <script type="text/javascript">
       const connectoToPlatform = async (uuid = null) => {
+        const isExistingUser =
+          document.getElementById("isExistingUser").checked;
         const sdkInstance = await window.PhylloSDK.getSDKInstance(
           "Sample App",
-          "sandbox"
+          "sandbox",
+          isExistingUser
         );
-        console.log(sdkInstance.token);
         return sdkInstance.clientConnect(uuid);
       };
     </script>
@@ -26,5 +28,12 @@
     >
       Connnect to YouTube
     </button>
+    <label for="isExistingUser">Existing User?</label>
+    <input
+      class="messageCheckbox"
+      type="checkbox"
+      value="3"
+      id="isExistingUser"
+    />
   </body>
 </html>
