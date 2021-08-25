@@ -1,8 +1,8 @@
 // INPUTS: Env, Used Id, Token, Developer Name, Redirect URL
 
 const PHYLLO_CONNECT_URL = {
-  sandbox: "http://localhost:3000/introscreen",
-  production: "http://localhost:3000/introscreen",
+  sandbox: "http://localhost:3000/",
+  production: "http://localhost:3000/",
 };
 
 const validateClientConnectParams = async (params) => {
@@ -38,7 +38,7 @@ const clientConnect = async (
     ) {
       workPlatformIdQueryParam = "";
     }
-    var phylloConnectURL = `${PHYLLO_CONNECT_URL[env]}?userId=${userId}&appName=${appName}&${workPlatformIdQueryParam}redirectURL=${window.location.href}&token=${token}&env=${env}`;
+    var phylloConnectURL = `${PHYLLO_CONNECT_URL[env]}?userId=${userId}&appName=${appName}&workPlatformId=${workPlatformId}&redirectURL=${window.location.href}&token=${token}&env=${env}`;
     window.location.replace(phylloConnectURL);
   } catch (err) {
     throw err;
