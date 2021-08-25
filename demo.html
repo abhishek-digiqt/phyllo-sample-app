@@ -1,6 +1,6 @@
 <html lang="en">
   <head>
-    <title>Phyllo Demo SDK</title>
+    <title>Phyllo Sample App</title>
     <link rel="stylesheet" type="text/css" href="/static/style.css"  />
     <script type="text/javascript" src="./dist/phylloConnectSDK.js"></script>
     <script type="text/javascript" src="./dist/phylloAPIHelper.js"></script>
@@ -10,7 +10,7 @@
     <script type="text/javascript">
       const phylloSDKConnect=async(workPlatformId = null)=> {
         try {
-          const env = "production";
+          const env = "sandbox";
           const timeStamp = new Date();
           const isExistingUser = document.getElementById("isExistingUser").checked;
            const userId = await createUser("DigiQT",timeStamp.getTime(),isExistingUser);

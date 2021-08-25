@@ -5,22 +5,21 @@ const PHYLLO_CONNECT_URL = {
   production: "http://localhost:3000/",
 };
 
-const validateClientConnectParams = async (params) => {
-  const errors = {};
-  if (!params.env || !["production", "sandbox"].includes(params.env)) {
-    errors.env = "Please Provide  Valid Environment";
+const validateParams = (params) => {
+  if (!params.env || !["sandbox", "production"].includes(params.env)) {
+    throw new Error("Please Provide Valid Environment");
   }
   if (!params.userId) {
-    errors.userId = "Please Provide a Valid Phyllo User Id";
-  }
-  if (!params.token) {
-    errors.token = "Please Provide a Valid Phyllo Token";
+    throw new Error("Please Provide User Id");
   }
   if (!params.appName) {
-    errors.appName = "Please Provide a Valid App Name";
+    throw new Error("Please Provide App Name");
   }
-  return { errors, isValid: Object.keys(errors).length };
+  if (!params.token) {
+    throw new Error("Please Provide Token");
+  }
 };
+
 const clientConnect = async (
   env,
   userId,
@@ -30,6 +29,7 @@ const clientConnect = async (
 ) => {
   //TODO: VALIDATE ALL PARAMS
   try {
+    validateParams({ env, userId, token, appName });
     var workPlatformIdQueryParam = `workPlatformId=${workPlatformId}&`;
     if (
       workPlatformId === null ||
@@ -41,6 +41,6 @@ const clientConnect = async (
     var phylloConnectURL = `${PHYLLO_CONNECT_URL[env]}?userId=${userId}&appName=${appName}&workPlatformId=${workPlatformId}&redirectURL=${window.location.href}&token=${token}&env=${env}`;
     window.location.replace(phylloConnectURL);
   } catch (err) {
-    throw err;
+    console.error(err);
   }
 };
