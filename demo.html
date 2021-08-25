@@ -16,14 +16,15 @@
            const userId = await createUser("DigiQT",timeStamp.getTime(),isExistingUser);
            const token = await createUserToken(userId,"http://localhost:3000/status/");
           const appName = "DigiQT";
-         //console.log(window.clientConnect,clientConnect,window);
-          await clientConnect(
+         console.log(PhylloConnectSDK.clientConnect);
+          const phylloConnectURL =  await PhylloConnectSDK.clientConnect(
             env,
             userId,
             token,
             appName,
             workPlatformId
           );
+          window.location.href =phylloConnectURL;
         } catch (err) {
           console.log(err);
         }
