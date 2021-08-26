@@ -18,7 +18,7 @@
           const timeStamp = new Date();
           const isExistingUser = document.getElementById("isExistingUser").checked;
            const userId = await createUser("DigiQT",timeStamp.getTime(),isExistingUser);
-           const token = await createUserToken(userId,"http://34.70.4.134:8050/status/");
+           const token = await createUserToken(userId,"http://localhost:3000/status/");
           const appName = "DigiQT";
          console.log(PhylloConnectSDK.clientConnect);
           const phylloConnectURL =  await PhylloConnectSDK.clientConnect(
